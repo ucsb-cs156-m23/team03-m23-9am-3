@@ -16,7 +16,7 @@ jest.mock('react-router-dom', () => ({
 describe("UCSBOrganizationsForm tests", () => {
     const queryClient = new QueryClient();
 
-    const expectedHeaders = ["OrgCode", "OrgTranslationShort", "OrgTranslation", "Inactive"];
+    const expectedHeaders = ["OrgTranslationShort", "OrgTranslation", "Inactive"];
     const testId = "UCSBOrganizationsForm";
 
     test("renders correctly with no initialContents", async () => {
@@ -83,16 +83,15 @@ describe("UCSBOrganizationsForm tests", () => {
         );
 
         expect(await screen.findByText(/Create/)).toBeInTheDocument();
-        const submitButton = screen.getByText(/Create/);
-        const inactiveField = screen.getByLabelText("Inactive");
-        expect(inactiveField).toHaveValue("false");
+        const submitButton = screen.getByTestId(`${testId}-submit`);
+        const inactiveField = screen.getByTestId(`${testId}-inactive`);
         
-        fireEvent.change(inactiveField, { target: { value: "true" } });
+        fireEvent.change(inactiveField, { target: { value: true } });
 
         fireEvent.click(submitButton);
-        expect(inactiveField).toHaveValue("true");
+        expect(inactiveField.value).toBe("true");
 
-        fireEvent.change(inactiveField, { target: { value: "false" } });
+        fireEvent.change(inactiveField, { target: { value: false } });
         
         fireEvent.click(submitButton);
         expect(inactiveField.value).toBe("false");
@@ -104,16 +103,14 @@ describe("UCSBOrganizationsForm tests", () => {
                 <UCSBOrganizationsForm />
             </Router>
         );
-        await screen.findByTestId(`${testId}-OrgCode`);
+        await screen.findByTestId(`${testId}-orgTranslationShort`);
         const submitButton = screen.getByTestId(`${testId}-submit`);
 
         fireEvent.click(submitButton);
 
-        await screen.findByText(/Organization Code is required/);
-        expect(screen.getByText(/Short Organization Translation is required/)).toBeInTheDocument();
+        await screen.findByText(/Short Organization Translation is required/);
         expect(screen.getByText(/Full Organization Translation is required/)).toBeInTheDocument();
-        const inactiveField = screen.getByLabelText("Inactive");
-        expect(inactiveField).toHaveValue("false"); 
+        expect(screen.getByText(/Inactive status is required/)).toBeInTheDocument();
     });
 
     test("Correct error messages on bad input", async () => {
@@ -122,15 +119,42 @@ describe("UCSBOrganizationsForm tests", () => {
                 <UCSBOrganizationsForm/>
             </Router>
         );
-        await screen.findByTestId(`${testId}-OrgCode`);
+        await screen.findByTestId(`${testId}-orgTranslationShort`);
         const inactiveField = screen.getByTestId(`${testId}-inactive`);
         const submitButton = screen.getByTestId(`${testId}-submit`);
 
-        fireEvent.change(inactiveField, { target: { value: 'bad-input' } });
+        fireEvent.change(inactiveField, { target: { value: "bad-input" } });
         fireEvent.click(submitButton);
 
         await screen.findByText(/Inactive status is required/);
-    })
+    });
+
+    test("Form able to render correct input from user", async () => {
+        render(
+            <QueryClientProvider client={queryClient}>
+                <Router>
+                    <UCSBOrganizationsForm/>
+                </Router>
+            </QueryClientProvider>
+        );
+
+        expect(await screen.findByText(/Create/)).toBeInTheDocument();
+        const orgTranslationShortField = screen.getByTestId(`${testId}-orgTranslationShort`);
+        const orgTranslationField = screen.getByTestId(`${testId}-orgTranslation`);
+        const inactiveField = screen.getByTestId(`${testId}-inactive`);
+        const submitButton = screen.getByTestId(`${testId}-submit`);
+
+        fireEvent.change(orgTranslationShortField, { target: { value: "Taiwanese American Student Association "} });
+        fireEvent.change(orgTranslationField, { target: { value: "Taiwanese American Student Association at UCSB" } });
+        fireEvent.change(inactiveField, { target: { value: false } });
+        
+        fireEvent.click(submitButton);
+
+        expect(screen.queryByText(/Short Organization Translation is required/)).not.toBeInTheDocument();
+        expect(screen.queryByText(/Full Organization Translation is required/)).not.toBeInTheDocument();
+        expect(screen.queryByText(/Inactive status is required/)).not.toBeInTheDocument();
+
+    });
 
 });
 

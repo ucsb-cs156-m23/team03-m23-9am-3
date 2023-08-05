@@ -38,22 +38,6 @@ function UCSBOrganizationsForm({ initialContents, submitAction, buttonlabel = "C
             )}
 
             <Form.Group className="mb-3">
-                <Form.Label htmlFor="OrgCode">OrgCode</Form.Label>
-                <Form.Control
-                    data-testid={testIdPrefix + "-OrgCode"}
-                    id="OrgCode"
-                    type="text"
-                    isInvalid={Boolean(errors.OrgCode)}
-                    {...register("OrgCode", {
-                        required: "Organization Code is required"
-                    })}
-                />
-                <Form.Control.Feedback type="invalid">
-                    {errors.OrgCode?.message}
-                </Form.Control.Feedback>
-            </Form.Group>
-
-            <Form.Group className="mb-3">
                 <Form.Label htmlFor="orgTranslationShort">OrgTranslationShort</Form.Label>
                 <Form.Control
                     data-testid={testIdPrefix + "-orgTranslationShort"}
@@ -89,16 +73,15 @@ function UCSBOrganizationsForm({ initialContents, submitAction, buttonlabel = "C
                 <Form.Label htmlFor="inactive">Inactive</Form.Label>
                 <Form.Control
                     data-testid={testIdPrefix + "-inactive"}
-                    isInvalid={Boolean(errors.inactive)}
                     id="inactive"
-                      as="select"
+                    type="checkbox"
+                    isInvalid={Boolean(errors.inactive)}
                       {...register("inactive", {
                         required: "Inactive status is required"
                       })}
-                    >
-                      <option value="false" selected>false</option>
+                      />
                       <option value="true">true</option>
-                    </Form.Control>
+                      <option value="false">false</option>
                 <Form.Control.Feedback type="invalid">
                     {errors.inactive?.message}
                 </Form.Control.Feedback>
