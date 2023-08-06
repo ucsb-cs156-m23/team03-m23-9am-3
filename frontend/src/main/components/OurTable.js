@@ -47,6 +47,7 @@ export default function OurTable({ columns, data, testid = "testid" }) {
                     data-testid={`${testid}-cell-row-${cell.row.index}-col-${cell.column.id}`}
                   >
                     {cell.render('Cell')}
+                    {cell.column.Header == "Inactive" && cell.value.toString()}
                   </td>
                 )
               })}

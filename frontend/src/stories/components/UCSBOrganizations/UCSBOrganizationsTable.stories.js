@@ -3,7 +3,6 @@ import UCSBOrganizationsTable from 'main/components/UCSBOrganizations/UCSBOrgani
 import { ucsbOrganizationsFixtures } from 'fixtures/ucsbOrganizationsFixtures';
 import { currentUserFixtures } from 'fixtures/currentUserFixtures';
 import { rest } from "msw";
-import { ThreeItemsAdminUser } from '../Restaurants/RestaurantTable.stories';
 
 export default {
     title: 'components/UCSBOrganizations/UCSBOrganizationsTable',

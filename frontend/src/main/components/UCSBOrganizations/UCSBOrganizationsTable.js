@@ -44,8 +44,8 @@ export default function UCSBOrganizationsTable({
         },
         {
             Header: 'Inactive',
-            accessor: (row, _rowIndex) => String(row.inactive)
-        },
+            accessor: 'inactive',
+        }
     ];
 
     if (hasRole(currentUser, "ROLE_ADMIN")) {
