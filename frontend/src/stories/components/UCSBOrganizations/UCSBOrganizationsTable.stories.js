@@ -18,17 +18,23 @@ const Template = (args) => {
 export const Empty = Template.bind({});
 
 Empty.args = {
-    organizations: []
+    ucsbOrganizations: []
 };
 
 export const ThreeItemsOrdinaryUser = Template.bind({});
 
 ThreeItemsOrdinaryUser.args = {
-    organizations: ucsbOrganizationsFixtures.threeOrganizations,
-    currentUser: currentUserFixtures.adminUser,
+    ucsbOrganizations: ucsbOrganizationsFixtures.threeOrganizations,
+    currentUser: currentUserFixtures.userOnly,
 }
 
 export const ThreeItemsAdminUser = Template.bind({});
+
+ThreeItemsAdminUser.args = {
+    ucsbOrganizations: ucsbOrganizationsFixtures.threeOrganizations,
+    currentUser: currentUserFixtures.adminUser,
+}
+
 ThreeItemsAdminUser.parameters = {
     msw: [
         rest.delete('/api/ucsborganizations', (req, res, ctx) => {

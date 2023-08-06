@@ -264,7 +264,7 @@ public class UCSBOrganizationsControllerTests extends ControllerTestCase {
                         .build();
 
         UCSBOrganizations clubBasketballEdited = UCSBOrganizations.builder()
-                        .orgCode("ucsbcb")
+                        .orgCode("mcb")
                         .orgTranslationShort("mensClubBball")
                         .orgTranslation("ucsbMensClubBasketball")
                         .inactive(true)
