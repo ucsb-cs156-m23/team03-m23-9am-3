@@ -28,6 +28,7 @@ ThreeItemsOrdinaryUser.args = {
     currentUser: currentUserFixtures.adminUser,
 }
 
+export const ThreeItemsAdminUser = Template.bind({});
 ThreeItemsAdminUser.parameters = {
     msw: [
         rest.delete('/api/ucsborganizations', (req, res, ctx) => {
