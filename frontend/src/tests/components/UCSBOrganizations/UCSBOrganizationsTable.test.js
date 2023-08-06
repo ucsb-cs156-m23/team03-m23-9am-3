@@ -71,6 +71,7 @@ describe("UCSBOrganizationsTable tests", () => {
 
     expect(screen.getByTestId(`${testId}-cell-row-0-col-orgCode`)).toHaveTextContent("ZPR");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-orgTranslationShort`)).toHaveTextContent("Zeta Phi Rho");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-inactive`)).toHaveTextContent("false");
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-orgCode`)).toHaveTextContent("SKY");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-orgTranslationShort`)).toHaveTextContent("Skydiving Club");
@@ -164,6 +165,7 @@ describe("UCSBOrganizationsTable tests", () => {
     // assert - check that the expected content is rendered
     expect(await screen.findByTestId(`${testId}-cell-row-0-col-orgCode`)).toHaveTextContent("ZPR");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-orgTranslationShort`)).toHaveTextContent("Zeta Phi Rho");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-inactive`)).toHaveTextContent("false");
 
     const deleteButton = screen.getByTestId(`${testId}-cell-row-0-col-Delete-button`);
     expect(deleteButton).toBeInTheDocument();
