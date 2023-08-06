@@ -105,14 +105,13 @@ import javax.validation.Valid;
 <span class="fc" id="L105">            UCSBOrganizations organizations = ucsbOrganizationsRepository.findById(orgCode)</span>
 <span class="fc" id="L106">                    .orElseThrow(() -&gt; new EntityNotFoundException(UCSBOrganizations.class, orgCode));</span>
                 
-<span class="fc" id="L108">            organizations.setOrgCode(incoming.getOrgCode());</span>
-<span class="fc" id="L109">            organizations.setOrgTranslationShort(incoming.getOrgTranslationShort());</span>
-<span class="fc" id="L110">            organizations.setOrgTranslation(incoming.getOrgTranslation());</span>
-<span class="fc" id="L111">            organizations.setInactive(incoming.getInactive());</span>
+<span class="fc" id="L108">            organizations.setOrgTranslationShort(incoming.getOrgTranslationShort());</span>
+<span class="fc" id="L109">            organizations.setOrgTranslation(incoming.getOrgTranslation());</span>
+<span class="fc" id="L110">            organizations.setInactive(incoming.getInactive());</span>
 
-<span class="fc" id="L113">            ucsbOrganizationsRepository.save(organizations);</span>
+<span class="fc" id="L112">            ucsbOrganizationsRepository.save(organizations);</span>
 
-<span class="fc" id="L115">            return organizations;</span>
+<span class="fc" id="L114">            return organizations;</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.7.202105040129</span></div></body></html>
