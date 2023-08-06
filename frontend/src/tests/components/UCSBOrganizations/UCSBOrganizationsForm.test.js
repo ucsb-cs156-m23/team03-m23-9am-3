@@ -118,26 +118,6 @@ describe("UCSBOrganizationsForm tests", () => {
         await screen.findByText(/Full Organization Translation is required/);
     });
 
-    test("Correct error messages on bad input (31char long for orgTranslationShort", async () => {
-        render(
-            <QueryClientProvider client={queryClient}>
-                <Router>
-                    <UCSBOrganizationsForm />
-                </Router>
-            </QueryClientProvider>
-        );
-        await screen.findByTestId(`${testId}-orgTranslationShort`);
-        const orgTranslationShortField = screen.getByTestId(`${testId}-orgTranslationShort`);
-        const submitButton = screen.getByTestId("UCSBOrganizationsForm-submit");
-
-        fireEvent.change(orgTranslationShortField, { target: { value: 'b'.repeat(31) } });
-        fireEvent.click(submitButton);
-
-        await waitFor(() => {
-            expect(screen.getByText(/Max length is 30 characters/)).toBeInTheDocument();
-        });
-    });
-
     test("No error messages on good input", async () => {
         const mockSubmitAction = jest.fn();
 
