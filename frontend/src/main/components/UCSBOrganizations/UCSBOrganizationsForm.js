@@ -1,8 +1,8 @@
-import { Button, Form } from 'react-bootstrap';
-import { useForm } from 'react-hook-form'
+import { Button, Form} from 'react-bootstrap';
+import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-function UCSBOrganizationsForm({ initialContents, submitAction, buttonlabel = "Create" }) {
+function UCSBOrganizationsForm({ initialContents, submitAction, buttonLabel = "Create" , orgCodeDisabled}) {
 
 
     // Stryker disable all
@@ -13,7 +13,6 @@ function UCSBOrganizationsForm({ initialContents, submitAction, buttonlabel = "C
     } = useForm(
         { defaultValues: initialContents || {}, }
     );
-
     // Stryker restore all
 
     const navigate = useNavigate();
@@ -23,20 +22,20 @@ function UCSBOrganizationsForm({ initialContents, submitAction, buttonlabel = "C
     return (
         <Form onSubmit={handleSubmit(submitAction)}>
 
-            {initialContents && (
-                <Form.Group className="mb-3">
-                    <Form.Label htmlFor="orgCode">orgCode</Form.Label>
+            {
+                <Form.Group className="mb-3" >
+                    <Form.Label htmlFor="orgCode">OrgCode</Form.Label>
                     <Form.Control
                         data-testid={testIdPrefix + "-orgCode"}
                         id="orgCode"
                         type="text"
+                        disabled={orgCodeDisabled}
                         {...register("orgCode")}
-                        value={initialContents.orgCode}
                     />
                 </Form.Group>
-            )}
+            }
 
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-3" >
                 <Form.Label htmlFor="orgTranslationShort">OrgTranslationShort</Form.Label>
                 <Form.Control
                     data-testid={testIdPrefix + "-orgTranslationShort"}
@@ -45,6 +44,10 @@ function UCSBOrganizationsForm({ initialContents, submitAction, buttonlabel = "C
                     isInvalid={Boolean(errors.orgTranslationShort)}
                     {...register("orgTranslationShort", {
                         required: "Short Organization Translation is required",
+                        maxLength : {
+                            value: 100,
+                            message: "Max length 100 characters"
+                        }
                     })}
                 />
                 <Form.Control.Feedback type="invalid">
@@ -52,7 +55,7 @@ function UCSBOrganizationsForm({ initialContents, submitAction, buttonlabel = "C
                 </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-3" >
                 <Form.Label htmlFor="orgTranslation">OrgTranslation</Form.Label>
                 <Form.Control
                     data-testid={testIdPrefix + "-orgTranslation"}
@@ -68,25 +71,26 @@ function UCSBOrganizationsForm({ initialContents, submitAction, buttonlabel = "C
                 </Form.Control.Feedback>
             </Form.Group>
 
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-3" >
                 <Form.Label htmlFor="inactive">Inactive</Form.Label>
-                <Form.Control
+                <Form.Check
                     data-testid={testIdPrefix + "-inactive"}
-                    isInvalid={Boolean(errors.inactive)}
                     id="inactive"
-                      as="select"
-                      {...register("inactive", )}
-                    >
-                      <option value="false" selected>false</option>
-                      <option value="true">true</option>
-                    </Form.Control>
+                    type="checkbox"
+                    isInvalid={Boolean(errors.inactive)}
+                    {...register("inactive")}
+                />
+                <Form.Control.Feedback type="invalid">
+                    {errors.inactive?.message}
+                </Form.Control.Feedback>
             </Form.Group>
+
 
             <Button
                 type="submit"
                 data-testid={testIdPrefix + "-submit"}
             >
-                {buttonlabel}
+                {buttonLabel}
             </Button>
             <Button
                 variant="Secondary"
@@ -96,7 +100,8 @@ function UCSBOrganizationsForm({ initialContents, submitAction, buttonlabel = "C
                 Cancel
             </Button>
 
-        </Form> 
+        </Form>
+
     )
 }
 

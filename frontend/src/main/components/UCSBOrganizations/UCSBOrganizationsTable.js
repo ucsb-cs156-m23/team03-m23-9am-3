@@ -31,7 +31,7 @@ export default function UCSBOrganizationsTable({
 
     const columns = [
         {
-            Header: 'orgCode',
+            Header: 'OrgCode',
             accessor: 'orgCode', // accessor is the "key" in the data
         },
 

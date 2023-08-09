@@ -1,10 +1,13 @@
 const ucsbOrganizationsFixtures = {
-    oneOrganization: {
+    oneOrganization: 
+    [
+        {
         "orgCode": "TASA",
         "orgTranslationShort": "Taiwanese American Student Association",
         "orgTranslation": "Taiwanese American Student Association at UCSB",
         "inactive": false
-    },
+        }
+    ],
 
     threeOrganizations: [
         {
