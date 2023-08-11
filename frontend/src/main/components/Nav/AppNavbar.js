@@ -60,6 +60,13 @@ export default function AppNavbar({ currentUser, systemInfo, doLogout, currentUr
                 </>
               )
             }
+            {
+              hasRole(currentUser, "ROLE_USER") && (
+              <>
+                <Nav.Link as={NavLink} to="/ucsbdiningcommonsmenuitem">UCSBDiningCommonsMenuItem</Nav.Link>
+              </>
+            )
+}
             <Nav className="ml-auto">
               {
                 currentUser && currentUser.loggedIn ? (
