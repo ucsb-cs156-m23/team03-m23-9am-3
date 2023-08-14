@@ -44,14 +44,12 @@ describe("ArticlesForm tests", () => {
             </Router>
         );
         await screen.findByTestId("ArticlesForm-title");
-        const titleField = screen.getByTestId("ArticlesForm.title");
         const urlField = screen.getByTestId("ArticlesForm-url");
         const explanationField = screen.getByTestId("ArticlesForm.explanation");
         const emailField = screen.getByTestId("ArticlesForm.email");
         const DateAddedField = screen.getByTestId("ArticlesForm-DateAdded");
         const submitButton = screen.getByTestId("ArticlesForm-submit");
 
-        fireEvent.change(titleField, { target: { value: 'bad-input' } });
         fireEvent.change(urlField, { target: { value: 'bad-input' } });
         fireEvent.change(explanationField, { target: { value: 'bad-input' } });
         fireEvent.change(emailField, { target: { value: 'bad-input' } });
@@ -72,7 +70,6 @@ describe("ArticlesForm tests", () => {
 
         fireEvent.click(submitButton);
 
-        expect(screen.getByText(/Title is required./)).toBeInTheDocument();
         expect(screen.getByText(/URL is required./)).toBeInTheDocument();
         expect(screen.getByText(/Explanation is required./)).toBeInTheDocument();
         expect(screen.getByText(/Email is required./)).toBeInTheDocument();
@@ -92,14 +89,12 @@ describe("ArticlesForm tests", () => {
         );
         await screen.findByTestId("ArticlesForm-title");
 
-        const titleField = screen.getByTestId("ArticlesForm.title");
         const urlField = screen.getByTestId("ArticlesForm-url");
         const explanationField = screen.getByTestId("ArticlesForm.explanation");
         const emailField = screen.getByTestId("ArticlesForm.email");
         const DateAddedField = screen.getByTestId("ArticlesForm-DateAdded");
         const submitButton = screen.getByTestId("ArticlesForm-submit");
 
-        fireEvent.change(titleField, { target: { value: 'Using testing-playground with React Testing Library' } });
         fireEvent.change(urlField, { target: { value: 'https://dev.to/katieraby/using-testing-playground-with-react-testing-library-26j7' } });
         fireEvent.change(explanationField, { target: { value: 'Helpful when we get to front end development' } });
         fireEvent.change(emailField, { target: { value: 'phtcon@ucsb.edu' } });
