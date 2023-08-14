@@ -19,6 +19,9 @@ import UCSBOrganizationsCreatePage from "main/pages/UCSBOrganizations/UCSBOrgani
 import UCSBOrganizationsEditPage from "main/pages/UCSBOrganizations/UCSBOrganizationsEditPage";
 import UCSBOrganizationsIndexPage from "main/pages/UCSBOrganizations/UCSBOrganizationsIndexPage";
 
+import RecRequestIndexPage from "main/pages/RecommendationRequest/RecRequestIndexPage";
+import RecRequestCreatePage from "main/pages/RecommendationRequest/RecRequestCreatePage";
+import RecRequestEditPage from "main/pages/RecommendationRequest/RecRequestEditPage";
 
 import { hasRole, useCurrentUser } from "main/utils/currentUser";
 
@@ -90,6 +93,21 @@ function App() {
             <>
               <Route exact path="/ucsborganizations/create" element={<UCSBOrganizationsCreatePage />} />
               <Route exact path="/ucsborganizations/edit/:orgCode" element={<UCSBOrganizationsEditPage />} />
+            </>
+          )
+        }
+        {
+          hasRole(currentUser, "ROLE_USER") && (
+            <>
+              <Route exact path="/recommendationRequest" element={<RecRequestIndexPage />} />
+            </>
+          )          
+        }
+        {
+          hasRole(currentUser, "ROLE_ADMIN") && (
+            <>
+              <Route exact path="/recommendationRequest/create" element={<RecRequestCreatePage />} />
+              <Route exact path="/recommendationRequest/edit/:id" element={<RecRequestEditPage />} />
             </>
           )
         }
