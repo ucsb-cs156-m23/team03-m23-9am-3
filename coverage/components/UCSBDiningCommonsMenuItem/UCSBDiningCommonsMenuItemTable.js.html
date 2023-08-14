@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-    <title>Code coverage report for components/UCSBDates/UCSBDatesTable.js</title>
+    <title>Code coverage report for components/UCSBDiningCommonsMenuItem/UCSBDiningCommonsMenuItemTable.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
@@ -19,7 +19,7 @@
 <body>
 <div class='wrapper'>
     <div class='pad1'>
-        <h1><a href="../../index.html">All files</a> / <a href="index.html">components/UCSBDates</a> UCSBDatesTable.js</h1>
+        <h1><a href="../../index.html">All files</a> / <a href="index.html">components/UCSBDiningCommonsMenuItem</a> UCSBDiningCommonsMenuItemTable.js</h1>
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
@@ -32,7 +32,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>2/2</span>
+                <span class='fraction'>3/3</span>
             </div>
         
             
@@ -121,7 +121,13 @@
 <a name='L56'></a><a href='#L56'>56</a>
 <a name='L57'></a><a href='#L57'>57</a>
 <a name='L58'></a><a href='#L58'>58</a>
-<a name='L59'></a><a href='#L59'>59</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -170,8 +176,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">19x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">19x</span>
@@ -183,16 +189,19 @@
 import OurTable, { ButtonColumn } from "main/components/OurTable";
 &nbsp;
 import { useBackendMutation } from "main/utils/useBackend";
-import { cellToAxiosParamsDelete, onDeleteSuccess } from "main/utils/UCSBDateUtils"
+import { cellToAxiosParamsDelete, onDeleteSuccess } from "main/utils/UCSBDiningCommonsMenuItemUtils"
 import { useNavigate } from "react-router-dom";
 import { hasRole } from "main/utils/currentUser";
 &nbsp;
-export default function UCSBDatesTable({ dates, currentUser }) {
+export default function UCSBDiningCommonsMenuItemTable({
+    ucsbDiningCommonsMenuItems,
+    currentUser,
+    testIdPrefix = "UCSBDiningCommonsMenuItemTable" }) {
 &nbsp;
     const navigate = useNavigate();
 &nbsp;
     const editCallback = (cell) =&gt; {
-        navigate(`/ucsbdates/edit/${cell.row.values.id}`)
+        navigate(`/ucsbdiningcommonsmenuitem/edit/${cell.row.values.id}`)
     }
 &nbsp;
     // Stryker disable all : hard to test for query caching
@@ -200,7 +209,7 @@ export default function UCSBDatesTable({ dates, currentUser }) {
     const deleteMutation = useBackendMutation(
         cellToAxiosParamsDelete,
         { onSuccess: onDeleteSuccess },
-        ["/api/ucsbdates/all"]
+        ["/api/ucsbdiningcommonsmenuitem/all"]
     );
     // Stryker restore all 
 &nbsp;
@@ -214,28 +223,28 @@ export default function UCSBDatesTable({ dates, currentUser }) {
             accessor: 'id', // accessor is the "key" in the data
         },
         {
-            Header: 'QuarterYYYYQ',
-            accessor: 'quarterYYYYQ',
+            Header: 'DiningCommonsCode',
+            accessor: 'diningCommonsCode',
         },
         {
             Header: 'Name',
             accessor: 'name',
         },
         {
-            Header: 'Date',
-            accessor: 'localDateTime',
+            Header: 'Station',
+            accessor: 'station',
         }
     ];
 &nbsp;
     if (hasRole(currentUser, "ROLE_ADMIN")) {
-        columns.push(ButtonColumn("Edit", "primary", editCallback, "UCSBDatesTable"));
-        columns.push(ButtonColumn("Delete", "danger", deleteCallback, "UCSBDatesTable"));
+        columns.push(ButtonColumn("Edit", "primary", editCallback, testIdPrefix));
+        columns.push(ButtonColumn("Delete", "danger", deleteCallback, testIdPrefix));
     } 
 &nbsp;
     return &lt;OurTable
-        data={dates}
+        data={ucsbDiningCommonsMenuItems}
         columns={columns}
-        testid={"UCSBDatesTable"}
+        testid={testIdPrefix}
     /&gt;;
 };</pre></td></tr></table></pre>
 
