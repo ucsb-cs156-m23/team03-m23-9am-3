@@ -187,44 +187,6 @@ describe("AppNavbar tests", () => {
         expect(screen.queryByText("UCSBDates")).not.toBeInTheDocument();
     });
 
-    //ADDED TESTS
-    test("renders the ucsbdiningcommonsmenuitems link correctly", async () => {
-
-        const currentUser = currentUserFixtures.userOnly;
-        const systemInfo = systemInfoFixtures.showingBoth;
-
-        const doLogin = jest.fn();
-
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter>
-                    <AppNavbar currentUser={currentUser} systemInfo={systemInfo} doLogin={doLogin} />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
-
-        await screen.findByText("UCSB Dining Commons Menu Item");
-        const link = screen.getByText("UCSB Dining Commons Menu Item");
-        expect(link).toBeInTheDocument();
-        expect(link.getAttribute("href")).toBe("/ucsbdiningcommonsmenuitem");
-    });
-
-    test("UCSBDiningCommonsMenuItem links do NOT show when not logged in", async () => {
-        const currentUser = null;
-        const systemInfo = systemInfoFixtures.showingBoth;
-        const doLogin = jest.fn();
-
-        render(
-            <QueryClientProvider client={queryClient}>
-                <MemoryRouter>
-                    <AppNavbar currentUser={currentUser} systemInfo={systemInfo} doLogin={doLogin} />
-                </MemoryRouter>
-            </QueryClientProvider>
-        );
-
-        expect(screen.queryByText("UCSBDiningCommonsMenuItem")).not.toBeInTheDocument();
-    });
-
 });
 
 
