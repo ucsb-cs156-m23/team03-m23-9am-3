@@ -1,4 +1,3 @@
-/*
 import { fireEvent, render, waitFor, screen } from "@testing-library/react";
 import { recRequestFixtures } from "fixtures/recRequestFixtures";
 import RecRequestTable from "main/components/RecommendationRequest/RecRequestTable";
@@ -30,7 +29,7 @@ describe("RecRequestTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <RecRequestTable requests={[]} currentUser={currentUser} />
+          <RecRequestTable recrequests={[]} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
     );
@@ -55,7 +54,7 @@ describe("RecRequestTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <RecRequestTable requests={recRequestFixtures.threeRecRequests} currentUser={currentUser} />
+          <RecRequestTable recrequests={recRequestFixtures.threeRecRequests} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
     );
@@ -75,24 +74,24 @@ describe("RecRequestTable tests", () => {
     expect(screen.getByTestId(`${testId}-cell-row-0-col-requesterEmail`)).toHaveTextContent("jennifer.lopez@students.university.edu");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-professorEmail`)).toHaveTextContent("prof.anderson@university.edu");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-explanation`)).toHaveTextContent("Request for a letter of recommendation for my graduate school application to UCSB.");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-dateRequested`)).toHaveTextContent("2022-03-15T12:00:00.000");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-dateNeeded`)).toHaveTextContent("2022-04-01T12:00:00.000");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-dateRequested`)).toHaveTextContent("2022-03-15T12:00:00");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-dateNeeded`)).toHaveTextContent("2022-04-01T12:00:00");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-done`)).toHaveTextContent("true");
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("2");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-requesterEmail`)).toHaveTextContent("michael.jordan@workplace.net");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-professorEmail`)).toHaveTextContent("dr.williams@college.org");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-explanation`)).toHaveTextContent("Need a recommendation letter for a summer internship at XYZ Corp.");
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-dateRequested`)).toHaveTextContent("2022-06-01T12:00:00.000");
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-dateNeeded`)).toHaveTextContent("2022-06-15T12:00:00.000");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-dateRequested`)).toHaveTextContent("2022-06-01T12:00:00");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-dateNeeded`)).toHaveTextContent("2022-06-15T12:00:00");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-done`)).toHaveTextContent("false");
 
     expect(screen.getByTestId(`${testId}-cell-row-2-col-id`)).toHaveTextContent("3");
     expect(screen.getByTestId(`${testId}-cell-row-2-col-requesterEmail`)).toHaveTextContent("sophia.wang@students.college.org");
     expect(screen.getByTestId(`${testId}-cell-row-2-col-professorEmail`)).toHaveTextContent("jane.smith@faculty.school.edu");
     expect(screen.getByTestId(`${testId}-cell-row-2-col-explanation`)).toHaveTextContent("Requesting a recommendation for a scholarship application due in September.");
-    expect(screen.getByTestId(`${testId}-cell-row-2-col-dateRequested`)).toHaveTextContent("2022-08-20T12:00:00.000");
-    expect(screen.getByTestId(`${testId}-cell-row-2-col-dateNeeded`)).toHaveTextContent("2022-09-05T12:00:00.000");
+    expect(screen.getByTestId(`${testId}-cell-row-2-col-dateRequested`)).toHaveTextContent("2022-08-20T12:00:00");
+    expect(screen.getByTestId(`${testId}-cell-row-2-col-dateNeeded`)).toHaveTextContent("2022-09-05T12:00:00");
     expect(screen.getByTestId(`${testId}-cell-row-2-col-done`)).toHaveTextContent("true");
 
     const editButton = screen.getByTestId(`${testId}-cell-row-0-col-Edit-button`);
@@ -105,7 +104,7 @@ describe("RecRequestTable tests", () => {
 
   });
 
-  test("Has the expected column headers, content for ordinary user", () => {
+   test("Has the expected column headers, content for ordinary user", () => {
     // arrange
     const currentUser = currentUserFixtures.userOnly;
 
@@ -113,7 +112,7 @@ describe("RecRequestTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <RecRequestTable requests={recRequestFixtures.threeRecRequests} currentUser={currentUser} />
+          <RecRequestTable recrequests={recRequestFixtures.threeRecRequests} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
     );
@@ -133,32 +132,31 @@ describe("RecRequestTable tests", () => {
     expect(screen.getByTestId(`${testId}-cell-row-0-col-requesterEmail`)).toHaveTextContent("jennifer.lopez@students.university.edu");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-professorEmail`)).toHaveTextContent("prof.anderson@university.edu");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-explanation`)).toHaveTextContent("Request for a letter of recommendation for my graduate school application to UCSB.");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-dateRequested`)).toHaveTextContent("2022-03-15T12:00:00.000");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-dateNeeded`)).toHaveTextContent("2022-04-01T12:00:00.000");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-dateRequested`)).toHaveTextContent("2022-03-15T12:00:00");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-dateNeeded`)).toHaveTextContent("2022-04-01T12:00:00");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-done`)).toHaveTextContent("true");
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("2");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-requesterEmail`)).toHaveTextContent("michael.jordan@workplace.net");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-professorEmail`)).toHaveTextContent("dr.williams@college.org");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-explanation`)).toHaveTextContent("Need a recommendation letter for a summer internship at XYZ Corp.");
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-dateRequested`)).toHaveTextContent("2022-06-01T12:00:00.000");
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-dateNeeded`)).toHaveTextContent("2022-06-15T12:00:00.000");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-dateRequested`)).toHaveTextContent("2022-06-01T12:00:00");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-dateNeeded`)).toHaveTextContent("2022-06-15T12:00:00");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-done`)).toHaveTextContent("false");
 
     expect(screen.getByTestId(`${testId}-cell-row-2-col-id`)).toHaveTextContent("3");
     expect(screen.getByTestId(`${testId}-cell-row-2-col-requesterEmail`)).toHaveTextContent("sophia.wang@students.college.org");
     expect(screen.getByTestId(`${testId}-cell-row-2-col-professorEmail`)).toHaveTextContent("jane.smith@faculty.school.edu");
     expect(screen.getByTestId(`${testId}-cell-row-2-col-explanation`)).toHaveTextContent("Requesting a recommendation for a scholarship application due in September.");
-    expect(screen.getByTestId(`${testId}-cell-row-2-col-dateRequested`)).toHaveTextContent("2022-08-20T12:00:00.000");
-    expect(screen.getByTestId(`${testId}-cell-row-2-col-dateNeeded`)).toHaveTextContent("2022-09-05T12:00:00.000");
+    expect(screen.getByTestId(`${testId}-cell-row-2-col-dateRequested`)).toHaveTextContent("2022-08-20T12:00:00");
+    expect(screen.getByTestId(`${testId}-cell-row-2-col-dateNeeded`)).toHaveTextContent("2022-09-05T12:00:00");
     expect(screen.getByTestId(`${testId}-cell-row-2-col-done`)).toHaveTextContent("true");
 
     expect(screen.queryByText("Delete")).not.toBeInTheDocument();
     expect(screen.queryByText("Edit")).not.toBeInTheDocument();
   });
 
-
-  test("Edit button navigates to the edit page", async () => {
+   test("Edit button navigates to the edit page", async () => {
     // arrange
     const currentUser = currentUserFixtures.adminUser;
 
@@ -166,7 +164,7 @@ describe("RecRequestTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <RecRequestTable requests={recRequestFixtures.threeRecRequests} currentUser={currentUser} />
+          <RecRequestTable recrequests={recRequestFixtures.threeRecRequests} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
     );
@@ -176,24 +174,24 @@ describe("RecRequestTable tests", () => {
     expect(screen.getByTestId(`${testId}-cell-row-0-col-requesterEmail`)).toHaveTextContent("jennifer.lopez@students.university.edu");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-professorEmail`)).toHaveTextContent("prof.anderson@university.edu");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-explanation`)).toHaveTextContent("Request for a letter of recommendation for my graduate school application to UCSB.");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-dateRequested`)).toHaveTextContent("2022-03-15T12:00:00.000");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-dateNeeded`)).toHaveTextContent("2022-04-01T12:00:00.000");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-dateRequested`)).toHaveTextContent("2022-03-15T12:00:00");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-dateNeeded`)).toHaveTextContent("2022-04-01T12:00:00");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-done`)).toHaveTextContent("true");
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("2");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-requesterEmail`)).toHaveTextContent("michael.jordan@workplace.net");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-professorEmail`)).toHaveTextContent("dr.williams@college.org");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-explanation`)).toHaveTextContent("Need a recommendation letter for a summer internship at XYZ Corp.");
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-dateRequested`)).toHaveTextContent("2022-06-01T12:00:00.000");
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-dateNeeded`)).toHaveTextContent("2022-06-15T12:00:00.000");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-dateRequested`)).toHaveTextContent("2022-06-01T12:00:00");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-dateNeeded`)).toHaveTextContent("2022-06-15T12:00:00");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-done`)).toHaveTextContent("false");
 
     expect(screen.getByTestId(`${testId}-cell-row-2-col-id`)).toHaveTextContent("3");
     expect(screen.getByTestId(`${testId}-cell-row-2-col-requesterEmail`)).toHaveTextContent("sophia.wang@students.college.org");
     expect(screen.getByTestId(`${testId}-cell-row-2-col-professorEmail`)).toHaveTextContent("jane.smith@faculty.school.edu");
     expect(screen.getByTestId(`${testId}-cell-row-2-col-explanation`)).toHaveTextContent("Requesting a recommendation for a scholarship application due in September.");
-    expect(screen.getByTestId(`${testId}-cell-row-2-col-dateRequested`)).toHaveTextContent("2022-08-20T12:00:00.000");
-    expect(screen.getByTestId(`${testId}-cell-row-2-col-dateNeeded`)).toHaveTextContent("2022-09-05T12:00:00.000");
+    expect(screen.getByTestId(`${testId}-cell-row-2-col-dateRequested`)).toHaveTextContent("2022-08-20T12:00:00");
+    expect(screen.getByTestId(`${testId}-cell-row-2-col-dateNeeded`)).toHaveTextContent("2022-09-05T12:00:00");
     expect(screen.getByTestId(`${testId}-cell-row-2-col-done`)).toHaveTextContent("true");
 
     const editButton = screen.getByTestId(`${testId}-cell-row-0-col-Edit-button`);
@@ -207,7 +205,7 @@ describe("RecRequestTable tests", () => {
 
   });
 
-  test("Delete button calls delete callback", async () => {
+   test("Delete button calls delete callback", async () => {
     // arrange
     const currentUser = currentUserFixtures.adminUser;
 
@@ -215,7 +213,7 @@ describe("RecRequestTable tests", () => {
     render(
       <QueryClientProvider client={queryClient}>
         <MemoryRouter>
-          <RecRequestTable requests={recRequestFixtures.threeRecRequests} currentUser={currentUser} />
+          <RecRequestTable recrequests={recRequestFixtures.threeRecRequests} currentUser={currentUser} />
         </MemoryRouter>
       </QueryClientProvider>
     );
@@ -225,24 +223,24 @@ describe("RecRequestTable tests", () => {
     expect(screen.getByTestId(`${testId}-cell-row-0-col-requesterEmail`)).toHaveTextContent("jennifer.lopez@students.university.edu");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-professorEmail`)).toHaveTextContent("prof.anderson@university.edu");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-explanation`)).toHaveTextContent("Request for a letter of recommendation for my graduate school application to UCSB.");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-dateRequested`)).toHaveTextContent("2022-03-15T12:00:00.000");
-    expect(screen.getByTestId(`${testId}-cell-row-0-col-dateNeeded`)).toHaveTextContent("2022-04-01T12:00:00.000");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-dateRequested`)).toHaveTextContent("2022-03-15T12:00:00");
+    expect(screen.getByTestId(`${testId}-cell-row-0-col-dateNeeded`)).toHaveTextContent("2022-04-01T12:00:00");
     expect(screen.getByTestId(`${testId}-cell-row-0-col-done`)).toHaveTextContent("true");
 
     expect(screen.getByTestId(`${testId}-cell-row-1-col-id`)).toHaveTextContent("2");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-requesterEmail`)).toHaveTextContent("michael.jordan@workplace.net");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-professorEmail`)).toHaveTextContent("dr.williams@college.org");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-explanation`)).toHaveTextContent("Need a recommendation letter for a summer internship at XYZ Corp.");
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-dateRequested`)).toHaveTextContent("2022-06-01T12:00:00.000");
-    expect(screen.getByTestId(`${testId}-cell-row-1-col-dateNeeded`)).toHaveTextContent("2022-06-15T12:00:00.000");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-dateRequested`)).toHaveTextContent("2022-06-01T12:00:00");
+    expect(screen.getByTestId(`${testId}-cell-row-1-col-dateNeeded`)).toHaveTextContent("2022-06-15T12:00:00");
     expect(screen.getByTestId(`${testId}-cell-row-1-col-done`)).toHaveTextContent("false");
 
     expect(screen.getByTestId(`${testId}-cell-row-2-col-id`)).toHaveTextContent("3");
     expect(screen.getByTestId(`${testId}-cell-row-2-col-requesterEmail`)).toHaveTextContent("sophia.wang@students.college.org");
     expect(screen.getByTestId(`${testId}-cell-row-2-col-professorEmail`)).toHaveTextContent("jane.smith@faculty.school.edu");
     expect(screen.getByTestId(`${testId}-cell-row-2-col-explanation`)).toHaveTextContent("Requesting a recommendation for a scholarship application due in September.");
-    expect(screen.getByTestId(`${testId}-cell-row-2-col-dateRequested`)).toHaveTextContent("2022-08-20T12:00:00.000");
-    expect(screen.getByTestId(`${testId}-cell-row-2-col-dateNeeded`)).toHaveTextContent("2022-09-05T12:00:00.000");
+    expect(screen.getByTestId(`${testId}-cell-row-2-col-dateRequested`)).toHaveTextContent("2022-08-20T12:00:00");
+    expect(screen.getByTestId(`${testId}-cell-row-2-col-dateNeeded`)).toHaveTextContent("2022-09-05T12:00:00");
     expect(screen.getByTestId(`${testId}-cell-row-2-col-done`)).toHaveTextContent("true");
 
     const deleteButton = screen.getByTestId(`${testId}-cell-row-0-col-Delete-button`);
@@ -252,4 +250,3 @@ describe("RecRequestTable tests", () => {
     fireEvent.click(deleteButton);
   });
 });
-*/

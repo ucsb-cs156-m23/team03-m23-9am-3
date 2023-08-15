@@ -102,7 +102,7 @@ function RecRequestForm({ initialContents, submitAction, buttonLabel = "Create" 
             <Row>
                 <Col>
                     <Form.Group className="mb-3" >
-                        <Form.Label htmlFor="dateRequested">Date Requested (iso format)</Form.Label>
+                        <Form.Label htmlFor="dateRequested">Date Requested</Form.Label>
                         <Form.Control
                             data-testid="RecRequestForm-dateRequested"
                             id="dateRequested"
@@ -117,7 +117,7 @@ function RecRequestForm({ initialContents, submitAction, buttonLabel = "Create" 
                 </Col>
                 <Col>
                     <Form.Group className="mb-3" >
-                        <Form.Label htmlFor="dateNeeded">Date Needed (iso format)</Form.Label>
+                        <Form.Label htmlFor="dateNeeded">Date Needed</Form.Label>
                         <Form.Control
                             data-testid="RecRequestForm-dateNeeded"
                             id="dateNeeded"
@@ -132,7 +132,7 @@ function RecRequestForm({ initialContents, submitAction, buttonLabel = "Create" 
                 </Col>
                 <Col>
                     <Form.Group className="mb-3" >
-                        <Form.Label htmlFor="done">Completed</Form.Label>
+                        <Form.Label htmlFor="done">Is it done?</Form.Label>
                         <Form.Control
                             data-testid="RecRequestForm-done"
                             id="done"

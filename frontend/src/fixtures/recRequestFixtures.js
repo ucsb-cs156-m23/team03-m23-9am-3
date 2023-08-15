@@ -18,7 +18,7 @@ const recRequestFixtures = {
             "requesterEmail" : "jennifer.lopez@students.university.edu",
             "professorEmail" : "prof.anderson@university.edu",
             "explanation" : "Request for a letter of recommendation for my graduate school application to UCSB.",
-            "dateRequested": "2022-03-15T12:00:000",
+            "dateRequested": "2022-03-15T12:00:00",
             "dateNeeded" : "2022-04-01T12:00:00",
             "done" : "true"
         },
@@ -37,7 +37,7 @@ const recRequestFixtures = {
             "professorEmail" : "jane.smith@faculty.school.edu",
             "explanation" : "Requesting a recommendation for a scholarship application due in September.",
             "dateRequested": "2022-08-20T12:00:00",
-            "dateNeeded" : "2022-09-05T12:00:000",
+            "dateNeeded" : "2022-09-05T12:00:00",
             "done" : "true"
         }
     ]

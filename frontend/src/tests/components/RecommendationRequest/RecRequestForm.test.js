@@ -1,4 +1,3 @@
-/*
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
 import { BrowserRouter as Router } from "react-router-dom";
 
@@ -14,11 +13,11 @@ jest.mock('react-router-dom', () => ({
     useNavigate: () => mockedNavigate
 }));
 
-describe("RecommendationRequestForm tests", () => {
+describe("RecRequestForm tests", () => {
     const queryClient = new QueryClient();
 
-    const expectedHeaders = ["Requester Email", "Professor Email", "Explanation", "Date Requested", "Date Needed", "Is it done?"];
-    const testId = "RecommendationRequestForm";
+    const expectedHeaders = ['Requester Email', 'Professor Email', 'Explanation', 'Date Requested', 'Date Needed', 'Is it done?'];
+    const testId = "RecRequestForm";
 
     test("renders correctly with no initialContents", async () => {
         render(
@@ -47,7 +46,7 @@ describe("RecommendationRequestForm tests", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <Router>
-                    <RecommendationRequestForm initialContents={recRequestFixtures.oneRecRequest} />
+                    <RecRequestForm initialContents={recRequestFixtures.oneRecRequest} />
                 </Router>
             </QueryClientProvider>
         );
@@ -68,7 +67,7 @@ describe("RecommendationRequestForm tests", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <Router>
-                    <RecommendationRequestForm />
+                    <RecRequestForm />
                 </Router>
             </QueryClientProvider>
         );
@@ -84,7 +83,7 @@ describe("RecommendationRequestForm tests", () => {
         render(
             <QueryClientProvider client={queryClient}>
                 <Router>
-                    <RecommendationRequestForm />
+                    <RecRequestForm />
                 </Router>
             </QueryClientProvider>
         );
@@ -93,7 +92,8 @@ describe("RecommendationRequestForm tests", () => {
         const submitButton = screen.getByText(/Create/);
         fireEvent.click(submitButton);
 
-        await screen.findByText(/Requester email is required./);
+        await screen.findByTestId("RecRequestForm-requesterEmail");
+        expect(screen.getByText(/Requester Email is required/)).toBeInTheDocument();
         expect(screen.getByText(/Professor Email is required/)).toBeInTheDocument();
         expect(screen.getByText(/Explanation is required/)).toBeInTheDocument();
         expect(screen.getByText(/Date Requested is required/)).toBeInTheDocument();
@@ -104,11 +104,11 @@ describe("RecommendationRequestForm tests", () => {
 
         render(
             <Router  >
-                <RecommendationRequestForm />
+                <RecRequestForm />
             </Router>
         );
-        await screen.findByTestId("RecommendationRequestForm-cancel");
-        const cancelButton = screen.getByTestId("RecommendationRequestForm-cancel");
+        await screen.findByTestId("RecRequestForm-cancel");
+        const cancelButton = screen.getByTestId("RecRequestForm-cancel");
 
         fireEvent.click(cancelButton);
 
@@ -116,4 +116,3 @@ describe("RecommendationRequestForm tests", () => {
 
     });
 });
-*/
