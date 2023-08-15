@@ -1,5 +1,7 @@
 const recRequestFixtures = {
-    oneRecRequest: {
+    oneRecRequest: 
+    [   
+        {
         "id": 1,
         "requesterEmail" : "jennifer.lopez@students.university.edu",
         "professorEmail" : "prof.anderson@university.edu",
@@ -7,7 +9,9 @@ const recRequestFixtures = {
         "dateRequested": "2022-03-15T12:00:00",
         "dateNeeded" : "2022-04-01T12:00:00",
         "done" : "true"
-    },  
+        }  
+    ],
+    
     threeRecRequest: [
         {
             "id": 1,
