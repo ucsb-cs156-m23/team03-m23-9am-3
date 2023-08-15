@@ -23,6 +23,9 @@ import UCSBOrganizationsCreatePage from "main/pages/UCSBOrganizations/UCSBOrgani
 import UCSBOrganizationsEditPage from "main/pages/UCSBOrganizations/UCSBOrganizationsEditPage";
 import UCSBOrganizationsIndexPage from "main/pages/UCSBOrganizations/UCSBOrganizationsIndexPage";
 
+import HelpRequestCreatePage from "main/pages/HelpRequests/HelpRequestCreatePage";
+import HelpRequestEditPage from "main/pages/HelpRequests/HelpRequestEditPage";
+import HelpRequestIndexPage from "main/pages/HelpRequests/HelpRequestIndexPage";
 
 import { hasRole, useCurrentUser } from "main/utils/currentUser";
 
@@ -100,15 +103,31 @@ function App() {
         {
           hasRole(currentUser, "ROLE_USER") && (
             <>
-              <Route exact path="/ucsborganizations" element={<UCSBOrganizationsIndexPage />} />
+              <Route exact path="/ucsborganizations" element={<HelpRequestIndexPage />} />
             </>
           )
         }
         {
           hasRole(currentUser, "ROLE_ADMIN") && (
             <>
-              <Route exact path="/ucsborganizations/create" element={<UCSBOrganizationsCreatePage />} />
-              <Route exact path="/ucsborganizations/edit/:orgCode" element={<UCSBOrganizationsEditPage />} />
+              <Route exact path="/ucsborganizations/create" element={<HelpRequestCreatePage />} />
+              <Route exact path="/ucsborganizations/edit/:orgCode" element={<HelpRequestEditPage />} />
+            </>
+          )
+        }
+        
+        {
+          hasRole(currentUser, "ROLE_USER") && (
+            <>
+              <Route exact path="/helprequest" element={<UCSBOrganizationsIndexPage />} />
+            </>
+          )
+        }
+        {
+          hasRole(currentUser, "ROLE_ADMIN") && (
+            <>
+              <Route exact path="/helprequest/create" element={<UCSBOrganizationsCreatePage />} />
+              <Route exact path="/helprequest/edit/:orgCode" element={<UCSBOrganizationsEditPage />} />
             </>
           )
         }
