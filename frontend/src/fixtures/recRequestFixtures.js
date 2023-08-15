@@ -12,7 +12,7 @@ const recRequestFixtures = {
         }  
     ],
     
-    threeRecRequest: [
+    threeRecRequests: [
         {
             "id": 1,
             "requesterEmail" : "jennifer.lopez@students.university.edu",

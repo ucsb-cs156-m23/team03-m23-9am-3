@@ -43,7 +43,7 @@ export default function RecRequestCreatePage({storybook=false}) {
   return (
     <BasicLayout>
       <div className="pt-2">
-        <h1>Create New Recommendation Request</h1>
+        <h1>Create Recommendation Request</h1>
 
         <RecRequestForm submitAction={onSubmit} />
 
