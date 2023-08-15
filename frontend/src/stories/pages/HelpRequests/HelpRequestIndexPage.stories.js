@@ -39,7 +39,7 @@ ThreeItemsOrdinaryUser.parameters = {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
         rest.get('/api/helprequests/all', (_req, res, ctx) => {
-            return res(ctx.json(helpRequestFixtures.threeRequests));
+            return res(ctx.json(helpRequestFixtures.threehelpRequest));
         }),
     ],
 }
@@ -55,7 +55,7 @@ ThreeItemsAdminUser.parameters = {
             return res(ctx.json(systemInfoFixtures.showingNeither));
         }),
         rest.get('/api/helprequests/all', (_req, res, ctx) => {
-            return res(ctx.json(helpRequestFixtures.threeRequests));
+            return res(ctx.json(helpRequestFixtures.threehelpRequest));
         }),
         rest.delete('/api/helprequests', (req, res, ctx) => {
             window.alert("DELETE: " + JSON.stringify(req.url));

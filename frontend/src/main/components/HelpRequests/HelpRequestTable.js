@@ -26,6 +26,7 @@ export default function HelpRequestTable({
     );
     // Stryker restore all 
 
+    console.log("TESTING === ", helpRequests);
     // Stryker disable next-line all : TODO try to make a good test for this
     const deleteCallback = async (cell) => { deleteMutation.mutate(cell); }
 

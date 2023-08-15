@@ -17,6 +17,7 @@ const helpRequestFixtures = {
         {
             "id": 2,
              "requesterEmail": "kyou@ucsb.edu",
+             "teamId": "9am team03",
              "tableOrBreakoutroom": "table",
              "requestTime": "2023-01-02T12:00:00", 
              "explanation": "don't understand",    
@@ -26,6 +27,7 @@ const helpRequestFixtures = {
         {
             "id": 3,
              "requesterEmail": "lawrence_wang@ucsb.edu",
+             "teamId": "9am team02",
              "tableOrBreakoutroom": "breakoutroom",
              "requestTime": "2023-05-23T12:00:00",    
              "explanation": "extreme pain!",
@@ -35,7 +37,8 @@ const helpRequestFixtures = {
         {
             "id": 4,
              "requesterEmail": "wenxuanxu@ucsb.edu",
-             "tableOrBreakoutroom": "table",
+             "teamId": "9am team01",
+             "tableOrBreakoutroom": "table02",
              "requestTime": "2023-10-31T12:00:00",    
              "explanation": "I have no clue.",  
              "solved":"false"   

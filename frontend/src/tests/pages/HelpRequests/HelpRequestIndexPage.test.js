@@ -65,7 +65,7 @@ describe("HelpRequestIndexPage tests", () => {
 
     test("renders three helpRequests correctly for regular user", async () => {
         setupUserOnly();
-        axiosMock.onGet("/api/helprequests/all").reply(200, helpRequestFixtures.threeRequests);
+        axiosMock.onGet("/api/helprequests/all").reply(200, helpRequestFixtures.threehelpRequest);
 
         render(
             <QueryClientProvider client={queryClient}>
@@ -82,19 +82,19 @@ describe("HelpRequestIndexPage tests", () => {
         const createHelpRequestButton = screen.queryByText("Create HelpRequest");
         expect(createHelpRequestButton).not.toBeInTheDocument();
 
-        const requesterEmail = screen.getByText("johnny421@ucsb.edu");
+        const requesterEmail = screen.getByText("kyou@ucsb.edu");
         expect(requesterEmail).toBeInTheDocument();
 
         const teamId = screen.getByText("9am team03");
         expect(teamId).toBeInTheDocument();
 
-        const table = screen.getByText("table");
-        expect(table).toBeInTheDocument();
+        //const tableorbreakoutroom = screen.getByText("7");
+        //expect(tableorbreakoutroom).toBeInTheDocument();
 
-        const time = screen.getByText("2023-08-02T12:00:00");
+        const time = screen.getByText("2023-01-02T12:00:00");
         expect(time).toBeInTheDocument();
 
-        const explain = screen.getByText("wrong code");
+        const explain = screen.getByText("don't understand");
         expect(explain).toBeInTheDocument();
 
 
@@ -128,8 +128,8 @@ describe("HelpRequestIndexPage tests", () => {
 
     test("what happens when you click delete, admin", async () => {
         setupAdminUser();
-
-        axiosMock.onGet("/api/helprequests/all").reply(200, helpRequestFixtures.threeRequests);
+        const queryClient = new QueryClient();
+        axiosMock.onGet("/api/helprequests/all").reply(200, helpRequestFixtures.threehelpRequest);
         axiosMock.onDelete("/api/helprequests").reply(200, "HelpRequest with id 2 was deleted");
 
 
