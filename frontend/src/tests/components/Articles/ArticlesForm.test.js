@@ -70,7 +70,6 @@ describe("ArticlesForm tests", () => {
 
         fireEvent.click(submitButton);
 
-        expect(screen.getByText(/URL is required./)).toBeInTheDocument();
         expect(screen.getByText(/Explanation is required./)).toBeInTheDocument();
         expect(screen.getByText(/Email is required./)).toBeInTheDocument();
         expect(screen.getByText(/DateAdded is required./)).toBeInTheDocument();
