@@ -54,7 +54,8 @@ export default function RecRequestTable({ recrequests, currentUser }) {
         },
         {
             Header: 'Done',
-            accessor: 'done',
+            id: 'done',
+            accessor: (row, _rowIndex) => String(row.done)
         }
     ];
 
