@@ -4,7 +4,6 @@ package edu.ucsb.cs156.example.controllers;
 import edu.ucsb.cs156.example.repositories.UserRepository;
 import edu.ucsb.cs156.example.testconfig.TestConfig;
 import edu.ucsb.cs156.example.ControllerTestCase;
-import edu.ucsb.cs156.example.entities.UCSBDiningCommons;
 import edu.ucsb.cs156.example.entities.UCSBOrganizations;
 import edu.ucsb.cs156.example.repositories.UCSBOrganizationsRepository;
 
@@ -264,7 +263,7 @@ public class UCSBOrganizationsControllerTests extends ControllerTestCase {
                         .build();
 
         UCSBOrganizations clubBasketballEdited = UCSBOrganizations.builder()
-                        .orgCode("ucsbcb")
+                        .orgCode("mcb")
                         .orgTranslationShort("mensClubBball")
                         .orgTranslation("ucsbMensClubBasketball")
                         .inactive(true)
