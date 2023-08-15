@@ -18,7 +18,7 @@ describe("RestaurantForm tests", () => {
 
     const expectedHeaders = ["Name", "Description"];
     const testId = "RestaurantForm";
-
+ 
     test("renders correctly with no initialContents", async () => {
         render(
             <QueryClientProvider client={queryClient}>
