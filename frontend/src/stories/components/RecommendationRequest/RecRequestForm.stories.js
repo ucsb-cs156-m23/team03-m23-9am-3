@@ -4,7 +4,7 @@ import { recRequestFixtures } from 'fixtures/recRequestFixtures';
 
 export default {
     title: 'components/RecommendationRequest/RecommendationRequestForm',
-    component: RecommendationRequestForm
+    component: RecRequestForm
 };
 
 
@@ -27,7 +27,7 @@ Create.args = {
 export const Update = Template.bind({});
 
 Update.args = {
-    initialContents: recRequestFixtures.oneRecommendationRequest,
+    initialContents: recRequestFixtures.oneRecRequest,
     buttonLabel: "Update",
     submitAction: (data) => {
         console.log("Submit was clicked with data: ", data); 
