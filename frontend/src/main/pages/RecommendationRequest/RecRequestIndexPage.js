@@ -15,7 +15,7 @@ export default function RecRequestIndexPage() {
         return (
             <Button
                 variant="primary"
-                href="/recrequest/create"
+                href="/recommendationrequest/create"
                 style={{ float: "right" }}
             >
                 Create Recommendation Request 
@@ -27,8 +27,8 @@ export default function RecRequestIndexPage() {
   const { data: recRequests, error: _error, status: _status } =
     useBackend(
       // Stryker disable next-line all : don't test internal caching of React Query
-      ["/api/recommendationRequest/all"],
-      { method: "GET", url: "/api/recommendationRequest/all" },
+      ["/api/recommendationrequest/all"],
+      { method: "GET", url: "/api/recommendationrequest/all" },
       []
     );
   return (
