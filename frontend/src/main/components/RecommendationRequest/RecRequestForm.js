@@ -60,8 +60,8 @@ function RecRequestForm({ initialContents, submitAction, buttonLabel = "Create" 
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.requesterEmail && 'Requester Email is required. '}
-                            {errors.requesterEmail?.type === 'pattern' && 'Requester Email must contain @'}
-                        </Form.Control.Feedback>
+{/*                             {errors.requesterEmail?.type === 'pattern' && 'Requester Email must contain @'}
+ */}                        </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
                 <Col>
@@ -76,8 +76,8 @@ function RecRequestForm({ initialContents, submitAction, buttonLabel = "Create" 
                         />
                         <Form.Control.Feedback type="invalid">
                             {errors.professorEmail && 'Professor Email is required. '}
-                            {errors.professorEmail?.type === 'pattern' && 'Professor Email must contain @'}
-                        </Form.Control.Feedback>
+{/*                             {errors.professorEmail?.type === 'pattern' && 'Professor Email must contain @'}
+ */}                        </Form.Control.Feedback>
                     </Form.Group>
                 </Col>
                 <Col>

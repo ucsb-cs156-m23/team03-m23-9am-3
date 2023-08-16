@@ -115,4 +115,89 @@ describe("RecRequestForm tests", () => {
         await waitFor(() => expect(mockedNavigate).toHaveBeenCalledWith(-1));
 
     });
+
+    test("that the validations for the 'done' field are performed", async () => {
+        render(
+            <QueryClientProvider client={queryClient}>
+                <Router>
+                    <RecRequestForm />
+                </Router>
+            </QueryClientProvider>
+        );
+    
+        const submitButton = screen.getByText(/Create/);
+        
+        const doneField = screen.getByTestId("RecRequestForm-done");
+        fireEvent.change(doneField, { target: { value: "invalid_value" } });
+        fireEvent.click(submitButton);
+        
+        await waitFor(() => expect(screen.getByText(/"true" or "false" required/)).toBeInTheDocument());
+        
+        fireEvent.change(doneField, { target: { value: "" } });
+        fireEvent.click(submitButton);
+        
+        await waitFor(() => expect(screen.getByText(/Done is required/)).toBeInTheDocument());
+    });
+
+    test("shows error when 'done' field has invalid input", async () => {
+        render(
+            <QueryClientProvider client={queryClient}>
+                <Router>
+                    <RecRequestForm />
+                </Router>
+            </QueryClientProvider>
+        );
+    
+        const submitButton = screen.getByText(/Create/);
+        const doneField = screen.getByTestId("RecRequestForm-done");
+        
+        // Enter an invalid value for 'done' field
+        fireEvent.change(doneField, { target: { value: "invalid_value" } });
+        fireEvent.click(submitButton);
+        
+        // Expect the error message to be in the document
+        await waitFor(() => expect(screen.getByText(/"true" or "false" required/)).toBeInTheDocument());
+    });
+    
+    test("does not show error when 'done' field has valid input", async () => {
+        render(
+            <QueryClientProvider client={queryClient}>
+                <Router>
+                    <RecRequestForm />
+                </Router>
+            </QueryClientProvider>
+        );
+    
+        const submitButton = screen.getByText(/Create/);
+        const doneField = screen.getByTestId("RecRequestForm-done");
+        
+        // Enter a valid value for 'done' field
+        fireEvent.change(doneField, { target: { value: "true" } });
+        fireEvent.click(submitButton);
+        
+        // Expect the error message to not be in the document
+        const errorMessage = screen.queryByText(/"true" or "false" required/);
+        expect(errorMessage).not.toBeInTheDocument();
+    });
+
+    test("shows error when 'done' field is empty", async () => {
+        render(
+            <QueryClientProvider client={queryClient}>
+                <Router>
+                    <RecRequestForm />
+                </Router>
+            </QueryClientProvider>
+        );
+    
+        const submitButton = screen.getByText(/Create/);
+        const doneField = screen.getByTestId("RecRequestForm-done");
+        
+        // Leave the 'done' field empty
+        fireEvent.change(doneField, { target: { value: "" } });
+        fireEvent.click(submitButton);
+        
+        // Expect the error message to be in the document
+        await waitFor(() => expect(screen.getByText(/Done is required/)).toBeInTheDocument());
+    });
+    
 });

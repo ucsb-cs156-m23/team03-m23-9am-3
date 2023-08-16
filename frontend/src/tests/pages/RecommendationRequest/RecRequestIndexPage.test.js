@@ -147,13 +147,23 @@ describe("RecomendationRequestIndexPage tests", () => {
         expect(axiosMock.history.delete[0].params).toEqual({ id: 1 });
     });
 
-
-
-
-
-
-
-
-
+    test("renders without data when API call fails", async () => {
+        axiosMock.onGet("/api/recommendationrequest/all").reply(500);
+    
+        const queryClient = new QueryClient();
+        render(
+            <QueryClientProvider client={queryClient}>
+                <MemoryRouter>
+                    <RecRequestIndexPage />
+                </MemoryRouter>
+            </QueryClientProvider>
+        );
+    
+        const createRequestButton = screen.queryByText("Create Recommendation Request");
+        expect(createRequestButton).not.toBeInTheDocument();
+    
+        const rowData = screen.queryByTestId("RecRequestTable-row-0");
+        expect(rowData).not.toBeInTheDocument();
+    });
 });
 
